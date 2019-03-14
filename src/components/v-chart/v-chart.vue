@@ -389,13 +389,16 @@ export default {
       }
 
       if (this.barOptions) {
-        const { adjust, seriesField } = this.barOptions
+        const { adjust, seriesField, coord } = this.barOptions
         let color = this.buildColor(this.barOptions.colors)
         let rs = chart.interval().position(this.buildPosition())
         if (!seriesField && color) {
           rs.color(color)
         } else {
           rs.color(seriesField || '', color)
+        }
+        if (coord) {
+          chart.coord(coord, this.barOptions)
         }
 
         if (adjust) {
